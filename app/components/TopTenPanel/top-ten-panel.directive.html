@@ -5,36 +5,38 @@
 
 	<!-- container -->
 	<div class="col-sm-12">
-		<!-- startDate -->
-		<div class="dates">
-            <date-picker
-                id="startDate"
-                name="startDate"
-                class="startDate"
-                ng-required="true"
-                field-name="start"
-                ng-model="ctrl.snapshot.projectStartDate">
-            </date-picker>
-		</div>
+        <div class="options" ng-hide="ctrl.panelName === 'Schedule'">
+            <!-- startDate -->
+            <div class="dates">
+                <date-picker
+                    id="startDate"
+                    name="startDate"
+                    class="startDate"
+                    ng-required="true"
+                    field-name="start"
+                    ng-model="ctrl.snapshot.projectStartDate">
+                </date-picker>
+            </div>
 
-		<!-- endDate -->
-		<div class="dates">
-	        <date-picker
-	            id="endDate"
-	            name="endDate"
-	            class="endDate"
-	            ng-required="true"
-	            field-name="end"
-	            ng-model="ctrl.snapshot.projectEndDate">
-	        </date-picker>
-		</div>
+            <!-- endDate -->
+            <div class="dates">
+                <date-picker
+                    id="endDate"
+                    name="endDate"
+                    class="endDate"
+                    ng-required="true"
+                    field-name="end"
+                    ng-model="ctrl.snapshot.projectEndDate">
+                </date-picker>
+            </div>
 
-		<!-- radioSelections -->
-		<div class="col-sm-1">
-			<label><input type="radio" ng-model="ctrl.radio" value="red"> </label><br/>
-			<label><input type="radio" ng-model="ctrl.radio" ng-value="specialValue"> </label><br/>
-			<label><input type="radio" ng-model="ctrl.radio" value="blue">	</label><br/>
-		</div>
+            <!-- radioSelections -->
+            <div class="col-sm-1">
+                <label><input type="radio" ng-model="ctrl.radio" value="red"> </label><br/>
+                <label><input type="radio" ng-model="ctrl.radio" ng-value="specialValue"> </label><br/>
+                <label><input type="radio" ng-model="ctrl.radio" value="blue">  </label><br/>
+            </div>    
+        </div>    
 
         <!-- Cost grid -->
         <table ng-if="ctrl.panelName === 'Cost'" class="Cost">
@@ -161,6 +163,7 @@
                     <td class="col-md-1" ng-bind="::row.MarginCost" ng-class="{ red: row.MarginCost < 0 }"></td>
                     <td class="col-md-1" ng-bind="::row.Percent" ng-class="{ red: row.Percent < 0 }"></td>
                 </tr>
+                <!-- 
                 <tr class="Table__Row">
                     <td class="col-md-1">Others</td>
                     <td class="col-md-3" ng-bind=""></td>
@@ -176,6 +179,29 @@
                     <td class="col-md-1" ng-bind="ctrl.total['Flbr'].toFixed(2)"></td>
                     <td class="col-md-1" ng-bind="ctrl.total['MarginCost'].toFixed(2)" ng-class="{ red: ctrl.total['MarginCost'] < 0 }"></td>
                     <td class="col-md-1" ng-bind="ctrl.total['MarginPer'].toFixed(2) + '%'" ng-class="{ red: ctrl.total['MarginPer'] < 0 }"></td>
+                </tr>
+                -->
+            </tbody>
+        </table>
+
+        <!-- Schedule grid -->
+        <table ng-if="ctrl.panelName === 'Schedule'" class="Schedule">
+            <thead>
+                <tr class="Table__Header">
+                    <td class="col-md-1">#</td>
+                    <td class="col-md-3">Task Name</td>
+                    <td class="col-md-3">B/Line End</td>
+                    <td class="col-md-3">F/cast End</td>
+                    <td class="col-md-1">Var</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="Table__Row" ng-repeat="row in ctrl.data track by $index">
+                    <td class="col-md-1" ng-bind="::row.TaskNumber"></td>
+                    <td nowrap class="col-md-3" ng-bind="::row.TaskName"></td>
+                    <td class="col-md-3" ng-bind="::row.BlineEnd"></td>
+                    <td class="col-md-3" ng-bind="::row.FcastEnd"></td>
+                    <td class="col-md-1" ng-bind="::row.Var"></td>
                 </tr>
             </tbody>
         </table>

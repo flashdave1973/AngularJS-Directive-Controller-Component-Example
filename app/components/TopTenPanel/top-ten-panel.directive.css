@@ -6,6 +6,9 @@
     margin: 3px 5px;
     float: left;
 }
+.TopTenPanel table {
+    width: 100%;
+}
 .TopTenPanel input[type="radio"] {
     color: #333333;
     cursor: pointer;

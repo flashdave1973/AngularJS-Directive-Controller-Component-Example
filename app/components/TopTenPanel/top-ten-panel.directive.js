@@ -75,6 +75,7 @@
     function TopTenPanelController($timeout) {
         var vm = this;
 
+        // temp moc data
         var mockTasksbyTotalCost = [
             {TaskNumber: 1.1, TaskName: 'Enviro. Impact Assessment', Acc: 33.4, Plan: 37.0, Var: 3.6},
             {TaskNumber: 1.5, TaskName: 'Concept Design Submission', Acc: 28.5, Plan: 26.0, Var: -2.5},
@@ -92,6 +93,7 @@
             {TaskNumber: 3.1, TaskName: '', Acc: 2.4, Plan: 1.0, Var: 2.0}
         ];
 
+        // temp moc data
         var mockMarginbyEmployee = [
             {FirstName: 'Billy', LastName: 'Bob', BillRate: 62.4, FBLR: 52.4, MarginCost: -8.4, Percent: -19.4},
             {FirstName: 'Tommy', LastName: 'John', BillRate: 60.5, FBLR: 50.5, MarginCost: -6.5, Percent: -15.5},
@@ -109,6 +111,7 @@
             {FirstName: 'Hope', LastName: 'So', BillRate: 5.4, FBLR: 5.4, MarginCost: -0.1, Percent: -0.4}
         ];
 
+        // temp moc data
         var mockEmployeesbyHours = [
             {FirstName: 'Billy', LastName: 'Bob', Department: 'Bridges Dubai', ActHours: 233.4},
             {FirstName: 'Tommy', LastName: 'John', Department: 'Buildings Dubai', ActHours: 228.5},
@@ -126,6 +129,7 @@
             {FirstName: 'Hope', LastName: 'So', Department: 'Buildings Dubai', ActHours: 12.4}
         ];
 
+        // temp moc data
         var mockEmployeesbyLaborCost = [
             {FirstName: 'Billy', LastName: 'Bob', Department: 'Bridges Dubai', ActCost: 6233.4},
             {FirstName: 'Tommy', LastName: 'John', Department: 'Buildings Dubai', ActCost: 6028.5},
@@ -141,6 +145,24 @@
             {FirstName: 'Ven', LastName: 'Pen', Department: 'Homes Rome', ActCost: 1110.4},
             {FirstName: 'Dave', LastName: 'Flash', Department: 'Bridges Dubai', ActCost: 814.4},
             {FirstName: 'Hope', LastName: 'So', Department: 'Buildings Dubai', ActCost: 512.4}
+        ];
+
+        // temp moc data
+        var mockSchedule = [
+            {TaskNumber: 1.1, TaskName: 'Enviro. Impact Assessment', BlineEnd: 33.4, FcastEnd: 37.0, Var: 3.6},
+            {TaskNumber: 1.5, TaskName: 'Concept Design Submission', BlineEnd: 28.5, FcastEnd: 26.0, Var: -2.5},
+            {TaskNumber: 1.7, TaskName: 'abc', BlineEnd: 27.6, FcastEnd: 25.8, Var: -1.8},
+            {TaskNumber: 1.9, TaskName: 'etro', BlineEnd: 25.4, FcastEnd: 27.0, Var: 1.6},
+            {TaskNumber: 2.1, TaskName: 'Sanderson', BlineEnd: 23.3, FcastEnd: 22.0, Var: -1.3},
+            {TaskNumber: 2.3, TaskName: 'Megladon', BlineEnd: 21.9, FcastEnd: 24.7, Var: 2.8},
+            {TaskNumber: 2.5, TaskName: 'Premis', BlineEnd: 20.0, FcastEnd: 22.0, Var: 2.0},
+            {TaskNumber: 2.7, TaskName: 'Janghan', BlineEnd: 18.5, FcastEnd: 12.0, Var: -6.5},
+            {TaskNumber: 2.9, TaskName: 'Folio', BlineEnd: 14.3, FcastEnd: 11.0, Var: -3.3},
+            {TaskNumber: 3.1, TaskName: 'Monarch', BlineEnd: 12.0, FcastEnd: 7.0, Var: -7.0},
+            {TaskNumber: 3.2, TaskName: '', BlineEnd: '', FcastEnd: '', Var: ''},
+            {TaskNumber: 3.3, TaskName: '', BlineEnd: '', FcastEnd: '', Var: ''},
+            {TaskNumber: 3.4, TaskName: '', BlineEnd: '', FcastEnd: '', Var: ''},
+            {TaskNumber: 3.5, TaskName: '', BlineEnd: '', FcastEnd: '', Var: ''}
         ];
 
 
@@ -243,16 +265,16 @@
                 tempList    = [];
 
             // set totals
-            total[BillRate] = 0;
-            total[Flbr] = 0;
-            total[MarginCost] = 0;
-            total[MarginPer] = 0;
+            total[BillRate]     = 0;
+            total[Flbr]         = 0;
+            total[MarginCost]   = 0;
+            total[MarginPer]    = 0;
 
             // set other data
-            others[BillRate] = 0;
-            others[Flbr] = 0;
-            others[MarginCost] = 0;
-            others[MarginPer] = 0;
+            others[BillRate]    = 0;
+            others[Flbr]        = 0;
+            others[MarginCost]  = 0;
+            others[MarginPer]   = 0;
 
             // run loop and add
             for(var i = 0, tLength = data.length; i < tLength; i++) {
@@ -277,7 +299,7 @@
             }
 
             // set the title and data fields
-            vm.panelTitle = 'Top 10 Tasks by Total Cost';
+            vm.panelTitle = 'Margin by Employee (T&M Contracts)';
             vm.total = total;
             vm.others = others;
             vm.data = tempList;
@@ -297,10 +319,10 @@
          */
         var formatEmployeesbyLaborCost = function(data) {
             // set vars
-            var others = [],
-                total = [],
-                ActCost = 'ActCost',
-                tempList = [];
+            var others      = [],
+                total       = [],
+                ActCost     = 'ActCost',
+                tempList    = [];
 
             // set totals
             total[ActCost] = 0;
@@ -325,10 +347,10 @@
             }
 
             // set the title and data fields
-            vm.panelTitle = 'Top 10 Employees By Labor Cost';
-            vm.total = total;
-            vm.others = others;
-            vm.data = tempList;
+            vm.panelTitle   = 'Top 10 Employees By Labor Cost';
+            vm.total        = total;
+            vm.others       = others;
+            vm.data         = tempList;
         };
 
         /**
@@ -345,10 +367,10 @@
          */
         var formatEmployeesbyHours = function(data) {
             // set vars
-            var others = [],
-                total = [],
-                ActHours = 'ActHours',
-                tempList = [];
+            var others      = [],
+                total       = [],
+                ActHours    = 'ActHours',
+                tempList    = [];
 
             // set totals
             total[ActHours] = 0;
@@ -373,10 +395,10 @@
             }
 
             // set the title and data fields
-            vm.panelTitle = 'Top 10 Employees By Hour';
-            vm.total = total;
-            vm.others = others;
-            vm.data = tempList;
+            vm.panelTitle   = 'Top 10 Employees By Hour';
+            vm.total        = total;
+            vm.others       = others;
+            vm.data         = tempList;
         };
 
         /**
@@ -393,22 +415,22 @@
          */
         var formatTasksbyTotalCost = function(data) {
             // set vars
-            var others = [],
-                total = [],
-                Acc = 'Acc',
-                Plan = 'Plan',
-                Var = 'Var',
-                tempList = [];
+            var others      = [],
+                total       = [],
+                Acc         = 'Acc',
+                Plan        = 'Plan',
+                Var         = 'Var',
+                tempList    = [];
 
             // set totals
-            total[Acc] = 0;
+            total[Acc]  = 0;
             total[Plan] = 0;
-            total[Var] = 0;
+            total[Var]  = 0;
 
             // set other data
-            others[Acc] = 0;
+            others[Acc]  = 0;
             others[Plan] = 0;
-            others[Var] = 0;
+            others[Var]  = 0;
 
             // run loop and add
             for(var i = 0, tLength = data.length; i < tLength; i++) {
@@ -431,10 +453,28 @@
             }
 
             // set the title and data fields
-            vm.panelTitle = 'Top 10 Tasks by Total Cost';
-            vm.total = total;
-            vm.others = others;
-            vm.data = tempList;
+            vm.panelTitle   = 'Top 10 Tasks by Total Cost';
+            vm.total        = total;
+            vm.others       = others;
+            vm.data         = tempList;
+        };
+
+        /**
+         * @ngdoc method
+         *
+         * @name formatSchedule
+         *
+         * @methodOf components.shared.controller:TopTenPanelController
+         *
+         * @param {Array} data Data list
+         *
+         * @description
+         * Formates the data for use in the UI
+         */
+        var formatSchedule = function(data) {
+            // set the title and data
+            vm.panelTitle = 'Schedule';
+            vm.data = data;
         };
 
         /**
@@ -466,6 +506,9 @@
                         break;
                     case 'Margin':
                         formatMarginbyEmployee(mockMarginbyEmployee);
+                        break;
+                    case 'Schedule':
+                        formatSchedule(mockSchedule);
                         break;
                 }
             }, 0);
