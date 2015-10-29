@@ -1,0 +1,6 @@
+.DatePicker .form-control[readonly]{
+	background-color: #fff;
+}
+.DatePicker {
+    margin-top: 25px;
+}

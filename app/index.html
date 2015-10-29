@@ -1,0 +1,52 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="ecopmd" class="no-js ie lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="ecopmd" class="no-js ie lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="ecopmd" class="no-js ie lt-ie9"> <![endif]-->
+<!--[if IE 9]>         <html lang="en" ng-app="ecopmd" class="no-js ie lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" ng-app="ecopmd" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <!-- <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' /> -->
+    <meta content='width=device-width, initial-scale=1.0' name='viewport' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- <base href="/"> -->
+    <title>HTML</title>
+
+    <link href="../lib/bootstrap/css/bootstrap.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/2.3.4/ag-grid.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.3.3/css/pikaday.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="components/TopTenPanel/top-ten-panel.directive.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="components/DatePicker/date-picker.directive.css" media="all" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- 
+    Example Elements, made from AngularJS 
+    Directive/Controller as a Component 
+    -->
+    <top-ten-panel ng-model="temp.value" title="Cost"></top-ten-panel>
+    <top-ten-panel ng-model="temp.value" title="Hours"></top-ten-panel>
+    <top-ten-panel ng-model="temp.value" title="Labor"></top-ten-panel>
+    <top-ten-panel ng-model="temp.value" title="Margin"></top-ten-panel>
+
+    <!-- INCLUDED FILES -->
+    <!-- Javascript -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.3.3/pikaday.min.js"></script>
+    <script src="../lib/pikaday-angular\pikaday-angular.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/ag-grid/2.3.4/ag-grid.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/pubsub-js/1.5.3/pubsub.min.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.14.3/ui-bootstrap.js"></script>
+    <script src="app.js"></script>
+    <script src="components/DatePicker/date-picker.directive.js"></script>
+    <script src="components/TopTenPanel/top-ten-panel.directive.js"></script>
+    <script src="services/PubSub/pub-sub.service.js"></script>
+
+</body>
+</html>

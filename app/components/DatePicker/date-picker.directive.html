@@ -1,0 +1,21 @@
+<div class="DatePicker">
+	<p class="input-group">
+		<input type="text"
+			   class="form-control"
+			   pikaday="ctrl.date"
+			   ng-model="ctrl.date"
+			   min-date="ctrl.minDate"
+			   max-date="ctrl.maxDate"
+			   placeholder="mm/dd/yyyy"
+			   ng-readonly="true"
+			   format="MM/DD/YYYY"
+			   on-select="ctrl.selectADate(pikaday, date)"
+		/>
+
+		<span class="input-group-btn">
+			<button type="button" class="btn btn-default">
+				<i class="glyphicon glyphicon-calendar"></i>
+			</button>
+		</span>
+	</p>
+</div>

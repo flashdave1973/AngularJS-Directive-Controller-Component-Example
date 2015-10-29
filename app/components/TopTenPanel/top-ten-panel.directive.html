@@ -1,0 +1,189 @@
+<div class="TopTenPanel">
+	<div class="title">
+		<span ng-bind="ctrl.panelTitle"></span>
+	</div>
+
+	<!-- container -->
+	<div class="col-sm-12">
+		<!-- startDate -->
+		<div class="dates">
+            <date-picker
+                id="startDate"
+                name="startDate"
+                class="startDate"
+                ng-required="true"
+                field-name="start"
+                ng-model="ctrl.snapshot.projectStartDate">
+            </date-picker>
+		</div>
+
+		<!-- endDate -->
+		<div class="dates">
+	        <date-picker
+	            id="endDate"
+	            name="endDate"
+	            class="endDate"
+	            ng-required="true"
+	            field-name="end"
+	            ng-model="ctrl.snapshot.projectEndDate">
+	        </date-picker>
+		</div>
+
+		<!-- radioSelections -->
+		<div class="col-sm-1">
+			<label><input type="radio" ng-model="ctrl.radio" value="red"> </label><br/>
+			<label><input type="radio" ng-model="ctrl.radio" ng-value="specialValue"> </label><br/>
+			<label><input type="radio" ng-model="ctrl.radio" value="blue">	</label><br/>
+		</div>
+
+        <!-- Cost grid -->
+        <table ng-if="ctrl.panelName === 'Cost'" class="Cost">
+            <thead>
+                <tr class="Table__Header">
+                    <td class="col-md-1">#</td>
+                    <td class="col-md-2">Task#</td>
+                    <td class="col-md-3">Task Name</td>
+                    <td class="col-md-2">Act $k</td>
+                    <td class="col-md-2">Plan $k</td>
+                    <td class="col-md-2">Var $k</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="Table__Row" ng-repeat="row in ctrl.data track by $index">
+                    <td class="col-md-1" ng-bind="$index + 1"></td>
+                    <td class="col-md-2" ng-bind="::row.TaskNumber"></td>
+                    <td nowrap class="col-md-3" ng-bind="::row.TaskName"></td>
+                    <td class="col-md-2" ng-bind="::row.Acc"></td>
+                    <td class="col-md-2" ng-bind="::row.Plan"></td>
+                    <td class="col-md-2" ng-bind="::row.Var" ng-class="{ red: row.Var < 0 }"></td>
+                </tr>
+                <tr class="Table__Row">
+                    <td class="col-md-1">Others</td>
+                    <td class="col-md-2" ng-bind=""></td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-2" ng-bind="ctrl.others['Acc'].toFixed(2)"></td>
+                    <td class="col-md-2" ng-bind="ctrl.others['Plan'].toFixed(2)"></td>
+                    <td class="col-md-2" ng-bind="ctrl.others['Var'].toFixed(2)" ng-class="{ red: ctrl.others['Var'] < 0 }"></td>
+                </tr>
+                <tr class="Table__Row Total">
+                    <td class="col-md-1">Total</td>
+                    <td class="col-md-2" ng-bind=""></td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-2" ng-bind="ctrl.total['Acc'].toFixed(2)"></td>
+                    <td class="col-md-2" ng-bind="ctrl.total['Plan'].toFixed(2)"></td>
+                    <td class="col-md-2" ng-bind="ctrl.total['Var'].toFixed(2)" ng-class="{ red: ctrl.total['Var'] < 0 }"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Hours grid -->
+        <table ng-if="ctrl.panelName === 'Hours'" class="Hours">
+            <thead>
+                <tr class="Table__Header">
+                    <td class="col-md-1">#</td>
+                    <td class="col-md-3">Emp Name</td>
+                    <td class="col-md-3">Department</td>
+                    <td class="col-md-1">Act. Hrs.</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="Table__Row" ng-repeat="row in ctrl.data track by $index">
+                    <td class="col-md-1" ng-bind="$index + 1"></td>
+                    <td class="col-md-3" ng-bind="row.LastName + ', ' + row.FirstName"></td>
+                    <td nowrap class="col-md-3" ng-bind="::row.Department"></td>
+                    <td class="col-md-1" ng-bind="::row.ActHours"></td>
+                </tr>
+                <tr class="Table__Row">
+                    <td class="col-md-1">Others</td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-1" ng-bind="ctrl.others['ActHours'].toFixed(2)"></td>
+                </tr>
+                <tr class="Table__Row Total">
+                    <td class="col-md-1">Total</td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-1" ng-bind="ctrl.total['ActHours'].toFixed(2)"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Labor grid -->
+        <table ng-if="ctrl.panelName === 'Labor'" class="Labor">
+            <thead>
+                <tr class="Table__Header">
+                    <td class="col-md-2">#</td>
+                    <td class="col-md-2">Emp Name</td>
+                    <td class="col-md-3">Department</td>
+                    <td class="col-md-1">Act. $k.</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="Table__Row" ng-repeat="row in ctrl.data track by $index">
+                    <td class="col-md-1" ng-bind="$index + 1"></td>
+                    <td class="col-md-3" ng-bind="row.LastName + ', ' + row.FirstName"></td>
+                    <td nowrap class="col-md-3" ng-bind="::row.Department"></td>
+                    <td class="col-md-1" ng-bind="(row.ActCost / 1000).toFixed(2)"></td>
+                </tr>
+                <tr class="Table__Row">
+                    <td class="col-md-1">Others</td>
+                    <td class="col-md-23" ng-bind=""></td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-1" ng-bind="(ctrl.others['ActCost'] / 1000).toFixed(2)"></td>
+                </tr>
+                <tr class="Table__Row Total">
+                    <td class="col-md-1">Total</td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-1" ng-bind="(ctrl.total['ActCost'] / 1000).toFixed(2)"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Margin grid -->
+        <table ng-if="ctrl.panelName === 'Margin'" class="Margin">
+            <thead>
+                <tr class="Table__Header">
+                    <td class="col-md-1">#</td>
+                    <td class="col-md-3">Emp Name</td>
+                    <td class="col-md-2">Bill Rate</td>
+                    <td class="col-md-2">FBRL /</td>
+                    <td class="col-md-2">Marg $/h</td>
+                    <td class="col-md-2">Marg %</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="Table__Row" ng-repeat="row in ctrl.data track by $index">
+                    <td class="col-md-1" ng-bind="$index + 1"></td>
+                    <td class="col-md-3" ng-bind="row.LastName + ', ' + row.FirstName"></td>
+                    <td class="col-md-1" ng-bind="::row.BillRate"></td>
+                    <td class="col-md-1" ng-bind="::row.FBLR"></td>
+                    <td class="col-md-1" ng-bind="::row.MarginCost" ng-class="{ red: row.MarginCost < 0 }"></td>
+                    <td class="col-md-1" ng-bind="::row.Percent" ng-class="{ red: row.Percent < 0 }"></td>
+                </tr>
+                <tr class="Table__Row">
+                    <td class="col-md-1">Others</td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-1" ng-bind="ctrl.others['BillRate'].toFixed(2)"></td>
+                    <td class="col-md-1" ng-bind="ctrl.others['Flbr'].toFixed(2)"></td>
+                    <td class="col-md-1" ng-bind="ctrl.others['MarginCost'].toFixed(2)" ng-class="{ red: ctrl.total['MarginCost'] < 0 }"></td>
+                    <td class="col-md-1" ng-bind="ctrl.others['MarginPer'].toFixed(2) + '%'" ng-class="{ red: ctrl.total['MarginPer'] < 0 }"></td>
+                </tr>
+                <tr class="Table__Row Total">
+                    <td class="col-md-1">Total</td>
+                    <td class="col-md-3" ng-bind=""></td>
+                    <td class="col-md-1" ng-bind="ctrl.total['BillRate'].toFixed(2)"></td>
+                    <td class="col-md-1" ng-bind="ctrl.total['Flbr'].toFixed(2)"></td>
+                    <td class="col-md-1" ng-bind="ctrl.total['MarginCost'].toFixed(2)" ng-class="{ red: ctrl.total['MarginCost'] < 0 }"></td>
+                    <td class="col-md-1" ng-bind="ctrl.total['MarginPer'].toFixed(2) + '%'" ng-class="{ red: ctrl.total['MarginPer'] < 0 }"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- More Info -->
+    <div class="col-sm-12 MoreInfo">
+        More Info
+    </div>
+
+</div>
